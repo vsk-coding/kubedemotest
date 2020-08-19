@@ -1,23 +1,17 @@
 
 pipeline {
-    agent {
-        label 'minikube-slave'
-    }
+    agent any
 
     stages {
-        stage('minikube status') {
-            steps {      
-                sh 'minikube status'
-            }
-        }
+        
         stage('deploy hello minikube') {
             steps {
-                sh 'kubectl create -f test.yaml'
+                sh 'kubectl create -f deployment.yaml'
             }
         }
         stage('test deployment') {
             steps {
-                sh 'minikube service hello-node'
+                sh 'kubectl get pods'
             }
         }
         stage('Sleeping For Exactly 1 minute') {
