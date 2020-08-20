@@ -2,6 +2,7 @@
 pipeline {
     agent {
         kubernetes {
+            label 'jenkins-slave'
           
             
             yamlFile 'test.yaml'
