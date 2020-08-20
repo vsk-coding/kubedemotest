@@ -2,7 +2,7 @@
 pipeline {
     agent {
         kubernetes {
-            label 'jenkins-slave'
+            label 'minikube'
           
             
             yamlFile 'test.yaml'
