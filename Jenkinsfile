@@ -2,11 +2,9 @@
 pipeline {
     agent {
         kubernetes {
-            stages{
-                    stage('Run shell') {
-                        sh 'echo hello world'
-                    }  
-            }
+          
+            
+            yamlFile 'test.yaml'
         }
     }
     stages {
