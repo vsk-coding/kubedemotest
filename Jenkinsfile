@@ -2,8 +2,13 @@
 pipeline {
     agent {
         kubernetes {
-            yamlFile 'test.yaml'
-           
+            podTemplate {
+                node(POD_LABEL) {
+                    stage('Run shell') {
+                        sh 'echo hello world'
+                    }
+                }
+            }       
         }
     }
     stages {
