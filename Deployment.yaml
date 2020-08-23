@@ -1,43 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
-metadata:
-  labels:
-    app: hello-node
+metadata: 
+    name: web-app
 spec:
-  selector:
-    matchLabels:
-      app: hello-node
-    spec:
-      containers:
-      - image: k8s.gcr.io/echoserver:1.4
-        imagePullPolicy: IfNotPresent
-        name: echoserver
----
-apiVersion: v1
-kind: Pod
-metadata:
-  labels:
-    app: hello-node
-spec:
-  containers:
-  - image: k8s.gcr.io/echoserver:1.4
-    imagePullPolicy: IfNotPresent
-    name: echoserver
----
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-    app: hello-node
-spec:
-  ports:
-  - nodePort: 30580
-    port: 8080
-    protocol: TCP
-    targetPort: 8080
-  selector:
-    app: hello-node
-  sessionAffinity: None
-  type: LoadBalancer
-status:
-  loadBalancer: {}
+    selector:
+      matchLabels:
+        app: web
+    template:
+      metadata:
+        labels:
+          app: web
+      spec:
+        containers:
+        - name: kube-app
+          image: docker.io/vishnusk/kube-demo:
+          ports:
+          - containerPort: 80
+            hostPort: 8081
