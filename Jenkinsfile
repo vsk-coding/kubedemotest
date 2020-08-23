@@ -9,7 +9,11 @@ pipeline {
         stage("Build image") {
             steps {
                 script {
-                    myapp = docker.build("vishnusk/kube-demo:${env.BUILD_ID}")
+                    environment {
+                        DOCKER_ID = 'vishnusk'
+                        REPO_NAME = 'test'
+                    }
+                    myapp = sh 'docker build . -t="${env.DOCKER_ID}/${env.REPO_NAME}:latest'
                 }
             }
         }
