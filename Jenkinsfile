@@ -13,7 +13,7 @@ pipeline {
                         DOCKER_ID = 'vishnusk'
                         REPO_NAME = 'test'
                     }
-                    myapp = sh 'docker build . -t="${env.DOCKER_ID}/${env.REPO_NAME}:latest'
+                    myapp = sh 'docker build . -t="${env.DOCKER_ID}/${env.REPO_NAME}:latest"'
                 }
             }
         }
